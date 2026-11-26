@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#6D5D7E" />
+  <title>高血壓衛教小百科</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+    body {
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #F4F2F7;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Hide scrollbar for clean mobile look */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(109, 93, 126, 0.3);
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="flex justify-center min-h-screen bg-[#F4F2F7]">
+  <!-- Main Mobile Container -->
+  <div id="app-container" class="w-full max-w-md bg-[#F7F5FA] min-h-screen flex flex-col shadow-xl relative overflow-x-hidden">
+    
+    <!-- Sticky Top Header -->
+    <header class="sticky top-0 z-30 bg-[#6D5D7E] text-white px-4 pt-4 pb-3 shadow-md">
+      <div class="flex items-center justify-between">
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg font-bold tracking-wide">高血壓衛教小百科</h1>
+            <span class="text-[11px] bg-white/20 px-1.5 py-0.5 rounded font-medium">v3</span>
+          </div>
+          <p class="text-xs text-purple-100 mt-0.5">遠離高血壓，健康從生活做起</p>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="mt-3">
+        <div class="flex justify-between items-center text-xs text-purple-50 mb-1">
+          <span class="flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v33m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v33C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v33C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            閱讀進度
+          </span>
+          <span id="progress-text" class="font-semibold">0 / 3 完成</span>
+        </div>
+        <div class="w-full bg-black/25 rounded-full h-1.5 overflow-hidden">
+          <div id="progress-bar" class="bg-purple-200 h-1.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Content Area -->
+    <main id="content-area" class="flex-1 px-4 pt-4 pb-28 space-y-4">
+      
+      <!-- TAB 1: 認識 -->
+      <section id="tab-1" class="tab-panel space-y-4">
+        <!-- Card 1 -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-2 mb-2.5">
+            <span class="bg-[#6D5D7E] text-white text-xs font-bold px-2.5 py-0.5 rounded-full">觀念</span>
+            <h2 class="text-[#6D5D7E] font-bold text-base">為什麼要認識高血壓？</h2>
+          </div>
+          <p class="text-sm text-gray-700 leading-relaxed mb-3">
+            高血壓常被稱為<strong>「沉默的殺手」</strong>。初期不一定有明顯症狀，沒有頭暈或不舒服並不代表血壓正常。
+          </p>
+          <div class="bg-orange-50/90 border-l-4 border-orange-400 rounded-r-lg p-3 text-xs text-gray-800 leading-relaxed">
+            <strong>越早發現，越能及早控制：</strong>透過定期量血壓、改善生活習慣及配合治療，可以降低中風、心肌梗塞及腎功能衰退風險。
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-2 mb-2.5">
+            <span class="bg-[#6D5D7E] text-white text-xs font-bold px-2.5 py-0.5 rounded-full">標準</span>
+            <h2 class="text-[#6D5D7E] font-bold text-base">台灣最新血壓分級標準</h2>
+          </div>
+          <p class="text-xs text-gray-500 mb-2">單位：mmHg（毫米汞柱）</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="border-b border-gray-200 text-[#6D5D7E] font-bold">
+                  <th class="py-2 pr-2">血壓分級</th>
+                  <th class="py-2 px-2">收縮壓</th>
+                  <th class="py-2 pl-2">舒張壓</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100 text-gray-700">
+                <tr>
+                  <td class="py-2.5 pr-2 font-medium text-emerald-700">正常血壓</td>
+                  <td class="py-2.5 px-2">&lt; 120</td>
+                  <td class="py-2.5 pl-2">且 &lt; 80</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-2 font-medium text-amber-600">血壓偏高</td>
+                  <td class="py-2.5 px-2">120 – 129</td>
+                  <td class="py-2.5 pl-2">且 &lt; 80</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-2 font-medium text-orange-600">高血壓第一期</td>
+                  <td class="py-2.5 px-2">130 – 139</td>
+                  <td class="py-2.5 pl-2">或 80 – 89</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-2 font-medium text-red-600">高血壓第二期</td>
+                  <td class="py-2.5 px-2">≥ 140</td>
+                  <td class="py-2.5 pl-2">或 ≥ 90</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-3 bg-orange-50/90 border-l-4 border-orange-400 rounded-r-lg p-3 text-xs text-gray-800 leading-relaxed">
+            台灣最新診斷標準已下修至 <strong>130 / 80 mmHg</strong>，且建議以「居家量測數值」作為主要判斷依據。
+          </div>
+        </div>
+
+        <!-- Complete Button Area -->
+        <div class="pt-2 pb-4 text-center">
+          <p id="hint-1" class="text-xs text-gray-500 mb-2 flex items-center justify-center gap-1">
+            請滑動到本頁最底部閱讀完畢後，即可確認
+            <span class="inline-block bg-slate-500 text-white rounded px-1 text-[10px]">↓</span>
+          </p>
+          <button id="btn-complete-1" disabled onclick="completeTab(1)"
+            class="w-full py-3.5 rounded-full font-bold text-sm transition-all duration-200 bg-gray-300 text-white cursor-not-allowed shadow-sm">
+            我已完整閱讀本頁
+          </button>
+        </div>
+      </section>
+
+      <!-- TAB 2: 危害 -->
+      <section id="tab-2" class="tab-panel hidden space-y-4">
+        <!-- Card 1 -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-2 mb-2.5">
+            <span class="bg-[#6D5D7E] text-white text-xs font-bold px-2.5 py-0.5 rounded-full">成因</span>
+            <h2 class="text-[#6D5D7E] font-bold text-base">病因與危險因子</h2>
+          </div>
+          <ul class="space-y-2 text-sm text-gray-700 list-disc pl-5">
+            <li><strong>飲食習慣：</strong>高鹽（高鈉）、高油、重口味與加工食品</li>
+            <li><strong>生活型態：</strong>缺乏規律運動、長期熬夜與精神壓力大</li>
+            <li><strong>代謝與體重：</strong>肥胖、腹部脂肪過多、高血脂或糖尿病</li>
+            <li><strong>不良嗜好：</strong>吸菸（尼古丁使血管收縮）與過量飲酒</li>
+            <li><strong>家族遺傳：</strong>父母或直系親屬有高血壓病史</li>
+          </ul>
+          <div class="mt-3 bg-orange-50/90 border-l-4 border-orange-400 rounded-r-lg p-3 text-xs text-gray-800 leading-relaxed">
+            <strong>迷思破解：</strong>體型苗條、沒有頭暈症狀的人，仍可能因遺傳或高鈉飲食罹患高血壓，不能只靠身材或感覺判斷！
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-2 mb-2.5">
+            <span class="bg-[#6D5D7E] text-white text-xs font-bold px-2.5 py-0.5 rounded-full">併發症</span>
+            <h2 class="text-[#6D5D7E] font-bold text-base">長期未控制的四大器官傷害</h2>
+          </div>
+          <div class="space-y-2.5 text-sm">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
+              <div class="font-bold text-[#6D5D7E] mb-0.5">🧠 腦部傷害</div>
+              <p class="text-xs text-gray-600 leading-relaxed">腦血管硬化或破裂，大幅增加缺血性腦中風與出血性腦中風風險。</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
+              <div class="font-bold text-[#6D5D7E] mb-0.5">❤️ 心臟負荷</div>
+              <p class="text-xs text-gray-600 leading-relaxed">心臟長期費力打血，易造成左心室肥大、冠心病、心肌梗塞與心臟衰竭。</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
+              <div class="font-bold text-[#6D5D7E] mb-0.5">🫘 腎臟衰退</div>
+              <p class="text-xs text-gray-600 leading-relaxed">腎絲球長期承受高壓導致硬化、出現蛋白尿，嚴重時演變為尿毒症需洗腎。</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
+              <div class="font-bold text-[#6D5D7E] mb-0.5">👁️ 血管與視網膜病變</div>
+              <p class="text-xs text-gray-600 leading-relaxed">加速全身動脈粥狀硬化，並引發高血壓性視網膜病變影響視力。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Complete Button Area -->
+        <div class="pt-2 pb-4 text-center">
+          <p id="hint-2" class="text-xs text-gray-500 mb-2 flex items-center justify-center gap-1">
+            請滑動到本頁最底部閱讀完畢後，即可確認
+            <span class="inline-block bg-slate-500 text-white rounded px-1 text-[10px]">↓</span>
+          </p>
+          <button id="btn-complete-2" disabled onclick="completeTab(2)"
+            class="w-full py-3.5 rounded-full font-bold text-sm transition-all duration-200 bg-gray-300 text-white cursor-not-allowed shadow-sm">
+            我已完整閱讀本頁
+          </button>
+        </div>
+      </section>
+
+      <!-- TAB 3: 照護 -->
+      <section id="tab-3" class="tab-panel hidden space-y-4">
+        <!-- Card 1 -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-2 mb-2.5">
+            <span class="bg-[#6D5D7E] text-white text-xs font-bold px-2.5 py-0.5 rounded-full">量測</span>
+            <h2 class="text-[#6D5D7E] font-bold text-base">居家量血壓「722 原則」</h2>
+          </div>
+          <div class="grid grid-cols-3 gap-2 text-center my-3">
+            <div class="bg-[#F3EFF6] rounded-xl p-2.5 border border-[#E3DBE9]">
+              <div class="text-2xl font-extrabold text-[#6D5D7E]">7</div>
+              <div class="text-xs font-bold text-gray-800 mt-0.5">連續 7 天</div>
+              <div class="text-[11px] text-gray-500 mt-0.5">完整記錄趨勢</div>
+            </div>
+            <div class="bg-[#F3EFF6] rounded-xl p-2.5 border border-[#E3DBE9]">
+              <div class="text-2xl font-extrabold text-[#6D5D7E]">2</div>
+              <div class="text-xs font-bold text-gray-800 mt-0.5">每天 2 次</div>
+              <div class="text-[11px] text-gray-500 mt-0.5">早起與睡前</div>
+            </div>
+            <div class="bg-[#F3EFF6] rounded-xl p-2.5 border border-[#E3DBE9]">
+              <div class="text-2xl font-extrabold text-[#6D5D7E]">2</div>
+              <div class="text-xs font-bold text-gray-800 mt-0.5">每次 2 遍</div>
+              <div class="text-[11px] text-gray-500 mt-0.5">間隔1分鐘取平均</div>
+            </div>
+          </div>
+          <div class="bg-orange-50/90 border-l-4 border-orange-400 rounded-r-lg p-3 text-xs text-gray-800 leading-relaxed">
+            <strong>什麼是「白袍高血壓」？</strong>部分長輩到醫院看到醫護人員容易緊張，導致血壓暫時飆高。因此在家依 722 原則測得的數值，更能真實反映平日血壓狀況！
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-2 mb-2.5">
+            <span class="bg-[#6D5D7E] text-white text-xs font-bold px-2.5 py-0.5 rounded-full">生活</span>
+            <h2 class="text-[#6D5D7E] font-bold text-base">降壓護心生活 4 招</h2>
+          </div>
+          <ul class="space-y-2.5 text-sm text-gray-700">
+            <li class="flex items-start gap-2.5">
+              <span class="bg-[#EAE2F0] text-[#6D5D7E] font-bold text-xs px-2 py-0.5 rounded mt-0.5 shrink-0">1. 得舒飲食</span>
+              <span class="text-xs leading-relaxed">少鹽（每日鈉攝取 &lt; 2400mg）、多吃蔬果與全穀雜糧、選擇低脂乳品與白肉，減少紅肉與甜食。</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="bg-[#EAE2F0] text-[#6D5D7E] font-bold text-xs px-2 py-0.5 rounded mt-0.5 shrink-0">2. 規律運動</span>
+              <span class="text-xs leading-relaxed">每週累積至少 150 分鐘中等強度有氧運動（如快走、慢跑、騎單車、游泳）。</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="bg-[#EAE2F0] text-[#6D5D7E] font-bold text-xs px-2 py-0.5 rounded mt-0.5 shrink-0">3. 戒菸限酒</span>
+              <span class="text-xs leading-relaxed">維持理想體重與腰圍，徹底戒菸並限制酒精攝取，保持充足睡眠。</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="bg-[#EAE2F0] text-[#6D5D7E] font-bold text-xs px-2 py-0.5 rounded mt-0.5 shrink-0">4. 按時服藥</span>
+              <span class="text-xs leading-relaxed">若醫師已開立降血壓藥物，務必規律服用，切勿因血壓暫時正常或沒有不適就自行停藥。</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Complete Button Area -->
+        <div class="pt-2 pb-4 text-center">
+          <p id="hint-3" class="text-xs text-gray-500 mb-2 flex items-center justify-center gap-1">
+            請滑動到本頁最底部閱讀完畢後，即可確認
+            <span class="inline-block bg-slate-500 text-white rounded px-1 text-[10px]">↓</span>
+          </p>
+          <button id="btn-complete-3" disabled onclick="completeTab(3)"
+            class="w-full py-3.5 rounded-full font-bold text-sm transition-all duration-200 bg-gray-300 text-white cursor-not-allowed shadow-sm">
+            我已完整閱讀本頁
+          </button>
+        </div>
+      </section>
+
+      <!-- TAB 4: 測驗 -->
+      <section id="tab-4" class="tab-panel hidden space-y-4">
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="bg-emerald-600 text-white text-xs font-bold px-2.5 py-0.5 rounded-full">隨堂考</span>
+            <h2 class="text-[#6D5D7E] font-bold text-base">情境觀念大挑戰</h2>
+          </div>
+          <p class="text-xs text-gray-500 mb-4">恭喜完成前三章閱讀！請回答以下兩題生活情境題：</p>
+
+          <!-- Question 1 -->
+          <div class="mb-5 pb-4 border-b border-gray-100">
+            <p class="text-sm font-bold text-gray-800 leading-relaxed mb-3">
+              Q1. 阿公平常在家量血壓都很正常（大約 120/80），結果每次一去醫院看醫生，護理師一量發現飆到 150，阿公就緊張得要命。這時候應該相信哪邊的血壓？
+            </p>
+            <div class="space-y-2" id="q1-options">
+              <button onclick="answerQuiz(1, 'A', this)" class="quiz-btn-1 w-full text-left p-3 rounded-xl border border-gray-200 text-xs font-medium text-gray-700 hover:bg-gray-50 transition">
+                A. 醫院量出來的血壓（因為醫院機器比較準）
+              </button>
+              <button onclick="answerQuiz(1, 'B', this)" class="quiz-btn-1 w-full text-left p-3 rounded-xl border border-gray-200 text-xs font-medium text-gray-700 hover:bg-gray-50 transition">
+                B. 家裡量出來的血壓（符合 722 原則的居家紀錄）
+              </button>
+            </div>
+            <div id="q1-feedback" class="hidden mt-3 p-3 rounded-xl text-xs leading-relaxed"></div>
+          </div>
+
+          <!-- Question 2 -->
+          <div>
+            <p class="text-sm font-bold text-gray-800 leading-relaxed mb-3">
+              Q2. 小美身高 160 公分、體重只有 43 公斤，非常苗條，而且她平常完全不會頭暈。這樣她是不是絕對跟高血壓絕緣、不需要量血壓？
+            </p>
+            <div class="space-y-2" id="q2-options">
+              <button onclick="answerQuiz(2, 'A', this)" class="quiz-btn-2 w-full text-left p-3 rounded-xl border border-gray-200 text-xs font-medium text-gray-700 hover:bg-gray-50 transition">
+                A. 對，只有肥胖或會頭暈的人才需要擔心高血壓
+              </button>
+              <button onclick="answerQuiz(2, 'B', this)" class="quiz-btn-2 w-full text-left p-3 rounded-xl border border-gray-200 text-xs font-medium text-gray-700 hover:bg-gray-50 transition">
+                B. 錯，體型苗條與無症狀者仍可能罹患高血壓，需定期量測
+              </button>
+            </div>
+            <div id="q2-feedback" class="hidden mt-3 p-3 rounded-xl text-xs leading-relaxed"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: 關於 -->
+      <section id="tab-5" class="tab-panel hidden space-y-4">
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="bg-[#6D5D7E] text-white text-xs font-bold px-2.5 py-0.5 rounded-full">團隊</span>
+            <h2 class="text-[#6D5D7E] font-bold text-base">關於本衛教小百科</h2>
+          </div>
+          <div class="space-y-2 text-xs text-gray-700 leading-relaxed">
+            <p><strong>主題名稱：</strong>遠離高血壓 健康從生活做起</p>
+            <p><strong>製作組員：</strong>林志玲、顏秀穎</p>
+            <p><strong>核心理念：</strong>MONITOR（定期監測）、PREVENT（及早預防）、LIVE WELL（健康生活）。</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-2 mb-2.5">
+            <span class="bg-[#6D5D7E] text-white text-xs font-bold px-2.5 py-0.5 rounded-full">文獻</span>
+            <h2 class="text-[#6D5D7E] font-bold text-base">參考資料來源</h2>
+          </div>
+          <ul class="space-y-1.5 text-[11px] text-gray-500 break-all list-disc pl-4">
+            <li>KingNet 國家網路醫藥衛教圖文</li>
+            <li>健談 Havemary（高血壓認識與預防專題）</li>
+            <li>早安健康（高血壓併發症與飲食照護）</li>
+            <li>元氣網 / 聯合報健康版（確診高血壓新標準 130/80）</li>
+            <li>智抗糖部落格（如何預防高血壓）</li>
+            <li>內政部移民署健康專欄</li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Fixed Navigation Bar -->
+    <nav class="fixed bottom-0 w-full max-w-md bg-white border-t border-gray-200 px-2 py-1.5 flex justify-around items-center z-40 shadow-[0_-2px_10px_rgba(0,0,0,0.04)]">
+      <!-- Nav 1 -->
+      <button onclick="switchTab(1)" id="nav-1" class="nav-item flex flex-col items-center justify-center py-1 px-2 rounded-lg text-[#6D5D7E] transition">
+        <span id="badge-1" class="w-5 h-5 rounded text-[11px] font-bold flex items-center justify-center bg-[#6D5D7E] text-white mb-0.5">1</span>
+        <span class="text-[11px] font-bold">認識</span>
+      </button>
+
+      <!-- Nav 2 -->
+      <button onclick="switchTab(2)" id="nav-2" class="nav-item flex flex-col items-center justify-center py-1 px-2 rounded-lg text-gray-400 transition">
+        <span id="badge-2" class="w-5 h-5 rounded text-[11px] font-bold flex items-center justify-center bg-gray-400 text-white mb-0.5">2</span>
+        <span class="text-[11px] font-medium">危害</span>
+      </button>
+
+      <!-- Nav 3 -->
+      <button onclick="switchTab(3)" id="nav-3" class="nav-item flex flex-col items-center justify-center py-1 px-2 rounded-lg text-gray-400 transition">
+        <span id="badge-3" class="w-5 h-5 rounded text-[11px] font-bold flex items-center justify-center bg-gray-400 text-white mb-0.5">3</span>
+        <span class="text-[11px] font-medium">照護</span>
+      </button>
+
+      <!-- Nav 4 (Locked initially) -->
+      <button onclick="tryOpenQuiz()" id="nav-4" class="nav-item flex flex-col items-center justify-center py-1 px-2 rounded-lg text-gray-300 cursor-not-allowed transition relative">
+        <span id="badge-4" class="w-5 h-5 rounded text-[10px] font-bold flex items-center justify-center bg-[#F4F2F7] text-gray-400 mb-0.5">
+          🔒
+        </span>
+        <span class="text-[11px] font-medium">測驗</span>
+      </button>
+
+      <!-- Nav 5 -->
+      <button onclick="switchTab(5)" id="nav-5" class="nav-item flex flex-col items-center justify-center py-1 px-2 rounded-lg text-gray-400 transition">
+        <span id="badge-5" class="w-5 h-5 rounded text-[11px] font-bold flex items-center justify-center bg-gray-400 text-white mb-0.5">i</span>
+        <span class="text-[11px] font-medium">關於</span>
+      </button>
+    </nav>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 bg-gray-800/90 text-white text-xs px-4 py-2 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-50 whitespace-nowrap">
+      請先閱讀完前 3 個章節以解鎖測驗！
+    </div>
+
+  </div>
+
+  <script>
+    let currentTab = 1;
+    const completedTabs = { 1: false, 2: false, 3: false };
+    const unlockedScroll = { 1: false, 2: false, 3: false };
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.remove('opacity-0');
+      setTimeout(() => toast.classList.add('opacity-0'), 2200);
+    }
+
+    function checkScrollUnlock() {
+      if (currentTab > 3 || completedTabs[currentTab] || unlockedScroll[currentTab]) return;
+
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+
+      // Unlock if scrolled near bottom OR if page content fits entirely without scrolling
+      if (scrollTop + windowHeight >= docHeight - 30) {
+        unlockedScroll[currentTab] = true;
+        const btn = document.getElementById(`btn-complete-${currentTab}`);
+        const hint = document.getElementById(`hint-${currentTab}`);
+        if (btn) {
+          btn.disabled = false;
+          btn.classList.remove('bg-gray-300', 'cursor-not-allowed');
+          btn.classList.add('bg-[#6D5D7E]', 'hover:bg-[#574966]', 'active:scale-[0.99]');
+        }
+        if (hint) {
+          hint.innerHTML = '已閱讀到底部，請點擊下方按鈕確認 ✓';
+          hint.classList.add('text-[#6D5D7E]', 'font-medium');
+        }
+      }
+    }
+
+    function completeTab(tabNum) {
+      if (!unlockedScroll[tabNum]) return;
+      completedTabs[tabNum] = true;
+
+      const btn = document.getElementById(`btn-complete-${tabNum}`);
+      const hint = document.getElementById(`hint-${tabNum}`);
+      if (btn) {
+        btn.textContent = '已完成本頁閱讀 ✓';
+        btn.classList.remove('bg-[#6D5D7E]', 'hover:bg-[#574966]');
+        btn.classList.add('bg-emerald-600');
+      }
+      if (hint) {
+        hint.textContent = '本單元已完成閱讀紀錄';
+      }
+
+      updateProgress();
+
+      // Auto advance to next uncompleted tab or quiz
+      setTimeout(() => {
+        if (tabNum < 3) {
+          switchTab(tabNum + 1);
+        } else if (isAllCompleted()) {
+          showToast('🎉 恭喜完成全部閱讀，測驗已解鎖！');
+          switchTab(4);
+        }
+      }, 450);
+    }
+
+    function isAllCompleted() {
+      return completedTabs[1] && completedTabs[2] && completedTabs[3];
+    }
+
+    function updateProgress() {
+      const count = Object.values(completedTabs).filter(Boolean).length;
+      document.getElementById('progress-text').textContent = `${count} / 3 完成`;
+      document.getElementById('progress-bar').style.width = `${(count / 3) * 100}%`;
+
+      // Update completed badges
+      [1, 2, 3].forEach(i => {
+        const badge = document.getElementById(`badge-${i}`);
+        if (completedTabs[i]) {
+          badge.textContent = '✓';
+          badge.classList.remove('bg-gray-400', 'bg-[#6D5D7E]');
+          badge.classList.add('bg-emerald-600');
+        }
+      });
+
+      // Unlock Quiz tab if all 3 read
+      if (isAllCompleted()) {
+        const nav4 = document.getElementById('nav-4');
+        const badge4 = document.getElementById('badge-4');
+        nav4.classList.remove('text-gray-300', 'cursor-not-allowed');
+        nav4.classList.add('text-gray-500');
+        badge4.textContent = '測';
+        badge4.classList.remove('bg-[#F4F2F7]', 'text-gray-400');
+        badge4.classList.add('bg-emerald-600', 'text-white');
+      }
+    }
+
+    function tryOpenQuiz() {
+      if (!isAllCompleted()) {
+        showToast('請先完成「1 認識、2 危害、3 照護」閱讀以解鎖測驗！');
+        return;
+      }
+      switchTab(4);
+    }
+
+    function switchTab(tabNum) {
+      currentTab = tabNum;
+
+      // Hide all panels
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+      document.getElementById(`tab-${tabNum}`).classList.remove('hidden');
+
+      // Reset nav styles
+      [1, 2, 3, 4, 5].forEach(i => {
+        const nav = document.getElementById(`nav-${i}`);
+        const badge = document.getElementById(`badge-${i}`);
+        if (i === 4 && !isAllCompleted()) return;
+
+        if (i === tabNum) {
+          nav.classList.remove('text-gray-400', 'text-gray-500');
+          nav.classList.add('text-[#6D5D7E]');
+          if (!completedTabs[i] && i !== 4) {
+            badge.classList.remove('bg-gray-400');
+            badge.classList.add('bg-[#6D5D7E]');
+          }
+        } else {
+          nav.classList.remove('text-[#6D5D7E]');
+          nav.classList.add('text-gray-400');
+          if (!completedTabs[i] && i !== 4) {
+            badge.classList.remove('bg-[#6D5D7E]');
+            badge.classList.add('bg-gray-400');
+          }
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      setTimeout(checkScrollUnlock, 100);
+    }
+
+    function answerQuiz(qNum, choice, btnEl) {
+      const correct = 'B';
+      const buttons = document.querySelectorAll(`.quiz-btn-${qNum}`);
+      buttons.forEach(b => {
+        b.disabled = true;
+        b.classList.remove('hover:bg-gray-50');
+      });
+
+      const feedback = document.getElementById(`q${qNum}-feedback`);
+      feedback.classList.remove('hidden');
+
+      if (choice === correct) {
+        btnEl.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900', 'font-bold');
+        feedback.className = 'mt-3 p-3 rounded-xl text-xs leading-relaxed bg-emerald-50 text-emerald-900 border border-emerald-200';
+        if (qNum === 1) {
+          feedback.innerHTML = '<strong>✅ 答對了！</strong> 這是典型的「白袍高血壓」，因為到醫院緊張導致交感神經興奮使血壓暫時升高。只要在家依「722 原則」正確量測並記錄，醫師通常會以居家血壓作為主要判斷依據！';
+        } else {
+          feedback.innerHTML = '<strong>✅ 答對了！</strong> 高血壓初期多半沒有明顯症狀（沉默的殺手），且除了體重之外，遺傳、高鈉飲食、壓力與熬夜都是危險因子，因此不論體型胖瘦都應定期量血壓。';
+        }
+      } else {
+        btnEl.classList.add('bg-red-50', 'border-red-400', 'text-red-900');
+        buttons[1].classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900', 'font-bold');
+        feedback.className = 'mt-3 p-3 rounded-xl text-xs leading-relaxed bg-orange-50 text-gray-800 border border-orange-200';
+        if (qNum === 1) {
+          feedback.innerHTML = '<strong>💡 正確答案是 B：</strong> 阿公屬於「白袍高血壓」（看到醫護人員緊張導致血壓暫時飆高）。醫師通常會更採信平日依「722 原則」測得的居家血壓紀錄喔！';
+        } else {
+          feedback.innerHTML = '<strong>💡 正確答案是 B：</strong> 高血壓是「沉默的殺手」，瘦子與沒有頭暈症狀的人一樣可能因為遺傳、重口味飲食或壓力而血壓偏高，仍須定期量測。';
+        }
+      }
+    }
+
+    window.addEventListener('scroll', checkScrollUnlock);
+    window.addEventListener('resize', checkScrollUnlock);
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(checkScrollUnlock, 150);
+    });
+  </script>
+</body>
+</html>
